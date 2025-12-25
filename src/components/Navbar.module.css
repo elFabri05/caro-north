@@ -1,0 +1,169 @@
+/* Mobile First Styles */
+
+.appBar {
+  background-color: transparent !important;
+  box-shadow: none !important;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease !important;
+}
+
+.appBar.scrolled {
+  background-color: #425b72 !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1) !important;
+}
+
+.toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem 1rem;
+}
+
+.logoLink {
+  text-decoration: none;
+  color: inherit;
+}
+
+.logo {
+  font-family: var(--font-bebas), Arial, sans-serif !important;
+  font-size: 2.5rem !important;
+  font-weight: 400;
+  letter-spacing: 2px;
+  color: #ffffff;
+  cursor: pointer;
+  transition: opacity 0.3s ease;
+}
+
+.logo:hover {
+  opacity: 0.8;
+}
+
+/* Right section container */
+.rightSection {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+/* Hide desktop nav on mobile initially */
+.desktopNav {
+  display: none;
+  align-items: center;
+  opacity: 0;
+  transform: translateX(20px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.desktopNav.show {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* Hide mobile menu button initially */
+.menuButton {
+  display: block !important;
+  opacity: 0;
+  transform: scale(0.8);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  pointer-events: none;
+}
+
+.menuButton.show {
+  opacity: 1;
+  transform: scale(1);
+  pointer-events: all;
+}
+
+.navLink {
+  text-decoration: none;
+  color: inherit;
+}
+
+.navButton {
+  font-family: var(--font-montserrat), Arial, sans-serif !important;
+  font-weight: 500 !important;
+  font-size: 0.95rem !important;
+  padding: 0.5rem 1.2rem !important;
+  transition: background-color 0.3s ease !important;
+}
+
+.navButton:hover {
+  background-color: rgba(255, 255, 255, 0.1) !important;
+}
+
+/* Mobile Drawer Styles */
+.drawer {
+  z-index: 1300;
+}
+
+.drawerContent {
+  width: 250px;
+  height: 100%;
+  background-color: #425b72;
+  color: #ffffff;
+  padding: 1rem;
+}
+
+.closeButton {
+  color: #ffffff !important;
+  margin-bottom: 1rem;
+  align-self: flex-end;
+}
+
+.drawerLanguage {
+  padding: 1rem 0;
+  margin-bottom: 1rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.drawerLink {
+  text-decoration: none;
+  color: inherit;
+  width: 100%;
+}
+
+.drawerItemText {
+  font-family: var(--font-montserrat), Arial, sans-serif;
+  font-weight: 500;
+  font-size: 1.1rem;
+}
+
+.drawerItemText span {
+  font-family: var(--font-montserrat), Arial, sans-serif;
+  font-weight: 500;
+}
+
+/* Tablet and Desktop Styles */
+@media (min-width: 768px) {
+  .toolbar {
+    padding: 0.5rem 2rem;
+  }
+
+  .logo {
+    font-size: 3rem !important;
+  }
+
+  /* Show desktop nav on larger screens when scrolled */
+  .desktopNav {
+    display: flex;
+    gap: 0.5rem;
+  }
+
+  /* Hide mobile menu button on larger screens */
+  .menuButton {
+    display: none !important;
+  }
+}
+
+@media (min-width: 1024px) {
+  .toolbar {
+    padding: 0.5rem 3rem;
+  }
+
+  .logo {
+    font-size: 3.5rem !important;
+  }
+
+  .desktopNav {
+    gap: 1rem;
+  }
+}
