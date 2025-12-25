@@ -17,19 +17,22 @@ import {
 import MenuIcon from '@mui/icons-material/Menu';
 import CloseIcon from '@mui/icons-material/Close';
 import Link from 'next/link';
+import { useTranslations, useLocale } from 'next-intl';
+import { usePathname } from 'next/navigation';
 import LanguageSelector from './LanguageSelector';
 import styles from './Navbar.module.css';
 
-const navItems = [
-  { label: 'Expeditions', href: '/expeditions' },
-  { label: 'Films', href: '/films' },
-  { label: 'Guiding', href: '/guiding' },
-  { label: 'Contact', href: '/contact' },
-];
+const navItemKeys = ['expeditions', 'films', 'contact'];
 
 export default function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const t = useTranslations('nav');
+  const locale = useLocale();
+  const pathname = usePathname();
+
+  // Check if we're on the home page
+  const isHomePage = pathname === '/' || pathname === `/${locale}`;
 
   useEffect(() => {
     const handleScroll = () => {
@@ -45,11 +48,16 @@ export default function Navbar() {
     setMobileOpen(!mobileOpen);
   };
 
+  const navItems = navItemKeys.map(key => ({
+    label: t(key),
+    href: `/${locale}/${key}`
+  }));
+
   return (
     <>
-      <AppBar position="fixed" className={`${styles.appBar} ${scrolled ? styles.scrolled : ''}`}>
+      <AppBar position="fixed" className={`${styles.appBar} ${!isHomePage || scrolled ? styles.scrolled : ''}`}>
         <Toolbar className={styles.toolbar}>
-          <Link href="/" className={styles.logoLink}>
+          <Link href={`/${locale}`} className={styles.logoLink}>
             <Typography variant="h5" component="div" className={styles.logo}>
               Caro North
             </Typography>
@@ -57,7 +65,7 @@ export default function Navbar() {
 
           <Box className={styles.rightSection}>
             {/* Desktop Navigation */}
-            <Box className={`${styles.desktopNav} ${scrolled ? styles.show : ''}`}>
+            <Box className={`${styles.desktopNav} ${!isHomePage || scrolled ? styles.show : ''}`}>
               {navItems.map((item) => (
                 <Link key={item.label} href={item.href} className={styles.navLink}>
                   <Button color="inherit" className={styles.navButton}>
@@ -66,7 +74,7 @@ export default function Navbar() {
                 </Link>
               ))}
 
-              {/* Language Selector - Shows on scroll */}
+              {/* Language Selector - Shows on scroll or always on non-home pages */}
               <LanguageSelector />
             </Box>
 
@@ -76,7 +84,7 @@ export default function Navbar() {
               aria-label="open drawer"
               edge="end"
               onClick={handleDrawerToggle}
-              className={`${styles.menuButton} ${scrolled ? styles.show : ''}`}
+              className={`${styles.menuButton} ${!isHomePage || scrolled ? styles.show : ''}`}
             >
               <MenuIcon />
             </IconButton>

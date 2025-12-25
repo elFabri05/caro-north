@@ -1,25 +1,33 @@
 'use client';
 
-import { useState } from 'react';
 import { Select, MenuItem, FormControl } from '@mui/material';
 import LanguageIcon from '@mui/icons-material/Language';
+import { useLocale } from 'next-intl';
+import { useRouter, usePathname } from 'next/navigation';
 import styles from './LanguageSelector.module.css';
 
 type Language = 'en' | 'de' | 'fr';
 
 export default function LanguageSelector() {
-  const [language, setLanguage] = useState<Language>('en');
+  const locale = useLocale();
+  const router = useRouter();
+  const pathname = usePathname();
 
   const handleChange = (event: any) => {
-    setLanguage(event.target.value as Language);
-    // Here you can add logic to change the language throughout the app
-    console.log('Language changed to:', event.target.value);
+    const newLocale = event.target.value as Language;
+
+    // Replace the locale in the current pathname
+    const segments = pathname.split('/');
+    segments[1] = newLocale;
+    const newPath = segments.join('/');
+
+    router.push(newPath);
   };
 
   return (
     <FormControl className={styles.languageSelector}>
       <Select
-        value={language}
+        value={locale}
         onChange={handleChange}
         className={styles.select}
         IconComponent={() => null}

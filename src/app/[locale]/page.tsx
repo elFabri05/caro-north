@@ -1,62 +1,67 @@
 import Navbar from '@/components/Navbar';
 import Link from 'next/link';
+import { getTranslations } from 'next-intl/server';
 import styles from './page.module.css';
 
-const expeditions = [
-  {
-    id: 1,
-    title: 'Mont Blanc Summit',
-    description: 'An unforgettable journey to the highest peak in the Alps.',
-    image: '/images/expedition-1.jpg',
-  },
-  {
-    id: 2,
-    title: 'Patagonia Ice Climbing',
-    description: 'Exploring the stunning glaciers and peaks of Patagonia.',
-    image: '/images/expedition-2.jpg',
-  },
-  {
-    id: 3,
-    title: 'Himalayan Adventure',
-    description: 'Trekking through the majestic Himalayan mountain range.',
-    image: '/images/expedition-3.jpg',
-  },
-  {
-    id: 4,
-    title: 'Norwegian Fjords',
-    description: 'Climbing and exploring the dramatic Norwegian landscape.',
-    image: '/images/expedition-4.jpg',
-  },
-];
+export default async function Home({
+  params
+}: {
+  params: Promise<{ locale: string }>;
+}) {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: 'home' });
+  const tFilms = await getTranslations({ locale, namespace: 'films' });
 
-const films = [
-  {
-    id: 1,
-    title: 'Summit Stories',
-    description: 'A documentary about the challenges and triumphs of alpine climbing.',
-    image: '/images/film-1.jpg',
-  },
-  {
-    id: 2,
-    title: 'Ice & Fire',
-    description: 'Exploring volcanic peaks and glacial landscapes around the world.',
-    image: '/images/film-2.jpg',
-  },
-  {
-    id: 3,
-    title: 'The Vertical World',
-    description: "Stories from the world's most challenging climbing routes.",
-    image: '/images/film-3.jpg',
-  },
-  {
-    id: 4,
-    title: 'Mountain Spirit',
-    description: 'The culture and traditions of mountain communities worldwide.',
-    image: '/images/film-4.jpg',
-  },
-];
+  const expeditions = [
+    {
+      id: 1,
+      key: 'montBlanc',
+      slug: 'via-sedna',
+      image: '/images/expedition-1.jpg',
+    },
+    {
+      id: 2,
+      key: 'patagonia',
+      slug: 'rock-n-road',
+      image: '/images/expedition-2.jpg',
+    },
+    {
+      id: 3,
+      key: 'himalayan',
+      slug: 'usa-2019',
+      image: '/images/expedition-3.jpg',
+    },
+    {
+      id: 4,
+      key: 'norwegian',
+      slug: 'kishtwar-expedition-2019',
+      image: '/images/expedition-4.jpg',
+    },
+  ];
 
-export default function Home() {
+  const films = [
+    {
+      id: 1,
+      key: 'summitStories',
+      image: '/images/film-1.jpg',
+    },
+    {
+      id: 2,
+      key: 'iceFire',
+      image: '/images/film-2.jpg',
+    },
+    {
+      id: 3,
+      key: 'verticalWorld',
+      image: '/images/film-3.jpg',
+    },
+    {
+      id: 4,
+      key: 'mountainSpirit',
+      image: '/images/film-4.jpg',
+    },
+  ];
+
   return (
     <>
       <Navbar />
@@ -64,14 +69,18 @@ export default function Home() {
       <div className={styles.heroSecond}>
         <div className={styles.textContainer}>
           <p className={styles.description}>
-            Caro North is a mountain guide, alpinist, climber and speaker who runs expeditions around the globe.
+            {t('description')}
           </p>
         </div>
       </div>
 
       <section className={styles.expeditionsSection}>
         <div className={styles.expeditionsContainer}>
-          <h2 className={styles.sectionTitle}>Expeditions</h2>
+          <div className={styles.sectionHeader}>
+            <Link href={`/${locale}/expeditions`} style={{ textDecoration: 'none', color: 'inherit' }}>
+              <h2 className={styles.sectionTitle}>{t('expeditionsTitle')}</h2>
+            </Link>
+          </div>
           <div className={styles.expeditionsGrid}>
             {expeditions.map((expedition) => (
               <div key={expedition.id} className={styles.expeditionCard}>
@@ -80,15 +89,18 @@ export default function Home() {
                   style={{ backgroundImage: `url(${expedition.image})` }}
                 />
                 <div className={styles.expeditionContent}>
-                  <h3 className={styles.expeditionTitle}>{expedition.title}</h3>
-                  <p className={styles.expeditionDescription}>{expedition.description}</p>
-                  <Link href="/expeditions" className={styles.readMore}>
-                    Read More →
+                  <h3 className={styles.expeditionTitle}>{t(`expeditions.${expedition.key}.title`)}</h3>
+                  <p className={styles.expeditionDescription}>{t(`expeditions.${expedition.key}.description`)}</p>
+                  <Link href={`/${locale}/expeditions/${expedition.slug}`} className={styles.readMore}>
+                    {t('readMore')} →
                   </Link>
                 </div>
               </div>
             ))}
           </div>
+          <Link href={`/${locale}/expeditions`} className={styles.seeAllLink}>
+            {t('seeAll')} →
+          </Link>
         </div>
       </section>
 
@@ -96,7 +108,11 @@ export default function Home() {
 
       <section className={styles.filmsSection}>
         <div className={styles.filmsContainer}>
-          <h2 className={styles.filmsSectionTitle}>Films</h2>
+          <div className={styles.sectionHeader}>
+            <Link href={`/${locale}/films`} style={{ textDecoration: 'none', color: 'inherit' }}>
+              <h2 className={styles.filmsSectionTitle}>{t('filmsTitle')}</h2>
+            </Link>
+          </div>
           <div className={styles.filmsGrid}>
             {films.map((film) => (
               <div key={film.id} className={styles.filmCard}>
@@ -105,37 +121,40 @@ export default function Home() {
                   style={{ backgroundImage: `url(${film.image})` }}
                 />
                 <div className={styles.filmContent}>
-                  <h3 className={styles.filmTitle}>{film.title}</h3>
-                  <p className={styles.filmDescription}>{film.description}</p>
-                  <Link href="/films" className={styles.readMore}>
-                    Watch Now →
+                  <h3 className={styles.filmTitle}>{tFilms(`${film.key}.title`)}</h3>
+                  <p className={styles.filmDescription}>{tFilms(`${film.key}.description`)}</p>
+                  <Link href={`/${locale}/films`} className={styles.readMore}>
+                    {t('watchNow')} →
                   </Link>
                 </div>
               </div>
             ))}
           </div>
+          <Link href={`/${locale}/films`} className={styles.seeAllLink}>
+            {t('seeAll')} →
+          </Link>
         </div>
       </section>
 
       <div className={styles.heroFourth}>
         <div className={styles.contactContainer}>
-          <h2 className={styles.contactTitle}>Contact</h2>
+          <h2 className={styles.contactTitle}>{t('contactTitle')}</h2>
           <div className={styles.contactInfo}>
             <div className={styles.contactItem}>
-              <p className={styles.contactLabel}>Email</p>
-              <a href="mailto:info@caronorth.com" className={styles.contactLink}>
-                info@caronorth.com
+              <p className={styles.contactLabel}>{t('emailLabel')}</p>
+              <a href="mailto:caro.mountain@gmail.com" className={styles.contactLink}>
+                caro.mountain@gmail.com
               </a>
             </div>
             <div className={styles.contactItem}>
-              <p className={styles.contactLabel}>Phone</p>
-              <a href="tel:+1234567890" className={styles.contactLink}>
-                +1 (234) 567-890
+              <p className={styles.contactLabel}>{t('phoneLabel')}</p>
+              <a href="tel:+41 774723094" className={styles.contactLink}>
+                +41 774723094
               </a>
             </div>
             <div className={styles.socialLinks}>
               <a
-                href="https://instagram.com/caronorth"
+                href="https://instagram.com/caronorthofficial"
                 target="_blank"
                 rel="noopener noreferrer"
                 className={styles.socialLink}
@@ -146,7 +165,7 @@ export default function Home() {
                 </svg>
               </a>
               <a
-                href="https://facebook.com/caronorth"
+                href="https://www.facebook.com/ca.north.9"
                 target="_blank"
                 rel="noopener noreferrer"
                 className={styles.socialLink}
@@ -161,11 +180,11 @@ export default function Home() {
         </div>
 
         <div className={styles.additionalLinks}>
-          <Link href="/guiding" className={styles.additionalLink}>
-            Guiding
+          <Link href={`/${locale}/guiding`} className={styles.additionalLink}>
+            {t('guiding')}
           </Link>
-          <Link href="/talks" className={styles.additionalLink}>
-            Talks
+          <Link href={`/${locale}/talks`} className={styles.additionalLink}>
+            {t('talks')}
           </Link>
         </div>
       </div>
