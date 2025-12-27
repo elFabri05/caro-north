@@ -22,7 +22,7 @@ import { usePathname } from 'next/navigation';
 import LanguageSelector from './LanguageSelector';
 import styles from './Navbar.module.css';
 
-const navItemKeys = ['expeditions', 'films', 'contact'];
+const navItemKeys = ['guiding', 'adventures', 'contact'];
 
 export default function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);

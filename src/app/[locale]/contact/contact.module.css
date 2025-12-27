@@ -1,0 +1,141 @@
+/* Contact Page - Mobile First */
+
+.contactPage {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding: 2rem 1rem;
+  padding-top: 80px;
+
+  /* Background image - fixed */
+  background: url('/images/background-img4.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
+/* Contact Container - Mobile First */
+.contactContainer {
+  padding: 1.5rem;
+  max-width: 90%;
+  background-color: rgba(173, 216, 230, 0.3);
+  backdrop-filter: blur(5px);
+  border-radius: 8px;
+}
+
+.contactTitle {
+  font-family: var(--font-bebas), Arial, sans-serif;
+  font-size: 2.5rem;
+  color: #425b72;
+  margin: 0 0 2rem 0;
+  letter-spacing: 3px;
+}
+
+.contactInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.contactItem {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.contactLabel {
+  font-family: var(--font-montserrat), Arial, sans-serif;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: rgba(66, 91, 114, 0.7);
+  margin: 0;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.contactLink {
+  font-family: var(--font-montserrat), Arial, sans-serif;
+  font-size: 1.1rem;
+  font-weight: 400;
+  color: #425b72;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.contactLink:hover {
+  color: rgba(66, 91, 114, 0.6);
+}
+
+.socialLinks {
+  display: flex;
+  gap: 1.5rem;
+  margin-top: 1rem;
+}
+
+.socialLink {
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  display: inline-block;
+}
+
+.socialLink:hover {
+  opacity: 0.7;
+  transform: scale(1.1);
+}
+
+/* Tablet Styles for Contact */
+@media (min-width: 768px) {
+  .contactPage {
+    justify-content: flex-start;
+    align-items: flex-start;
+    padding-left: 3rem;
+    padding-top: 120px;
+  }
+
+  .contactContainer {
+    max-width: 450px;
+    padding: 2rem;
+  }
+
+  .contactTitle {
+    font-size: 3.5rem;
+  }
+
+  .contactInfo {
+    gap: 2rem;
+  }
+
+  .contactLink {
+    font-size: 1.2rem;
+  }
+
+  .socialLinks {
+    gap: 2rem;
+  }
+}
+
+/* Desktop Styles for Contact */
+@media (min-width: 1024px) {
+  .contactPage {
+    padding-left: 5rem;
+    padding-top: 140px;
+  }
+
+  .contactContainer {
+    max-width: 500px;
+    padding: 2.5rem;
+  }
+
+  .contactTitle {
+    font-size: 4rem;
+  }
+
+  .contactLink {
+    font-size: 1.3rem;
+  }
+}

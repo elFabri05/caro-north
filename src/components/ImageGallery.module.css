@@ -1,0 +1,273 @@
+/* Image Gallery - Mobile First */
+
+.gallery {
+  margin: 3rem 0;
+  padding: 2rem 0;
+  border-top: 2px solid #e0e0e0;
+  border-bottom: 2px solid #e0e0e0;
+}
+
+.galleryGrid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+}
+
+.galleryItem {
+  position: relative;
+  width: 100%;
+  padding-top: 75%; /* 4:3 aspect ratio */
+  background-color: #e0e0e0;
+  border-radius: 8px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.galleryItem:hover {
+  transform: scale(1.02);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+.galleryImage {
+  object-fit: cover;
+}
+
+/* Lightbox */
+.lightbox {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: transparent;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.lightboxContent {
+  position: relative;
+  display: inline-block;
+  max-width: 90vw;
+  max-height: 90vh;
+  border: 3px solid #ffffff;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+}
+
+.lightboxContent img {
+  display: block;
+  max-width: 90vw;
+  max-height: 90vh;
+  width: auto;
+  height: auto;
+}
+
+.lightboxImage {
+  object-fit: contain;
+  position: static !important;
+  width: auto !important;
+  height: auto !important;
+}
+
+.closeButton {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: rgba(0, 0, 0, 0.7);
+  border: 2px solid #ffffff;
+  color: #ffffff;
+  font-size: 2.5rem;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.3s ease, transform 0.2s ease;
+  z-index: 10001;
+  line-height: 1;
+  padding: 0;
+}
+
+.closeButton:hover {
+  background: rgba(0, 0, 0, 0.9);
+  transform: rotate(90deg);
+}
+
+.navButton {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0, 0, 0, 0.7);
+  border: 2px solid #ffffff;
+  color: #ffffff;
+  font-size: 4rem;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.3s ease, transform 0.2s ease;
+  z-index: 10001;
+  line-height: 0.8;
+  padding: 0;
+  padding-bottom: 4px;
+}
+
+.navButton:hover {
+  background: rgba(0, 0, 0, 0.9);
+}
+
+.navButtonPrev {
+  left: 1rem;
+}
+
+.navButtonNext {
+  right: 1rem;
+}
+
+.navButtonPrev:hover {
+  transform: translateY(-50%) translateX(-5px);
+}
+
+.navButtonNext:hover {
+  transform: translateY(-50%) translateX(5px);
+}
+
+.imageCounter {
+  position: absolute;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(0, 0, 0, 0.7);
+  border: 2px solid #ffffff;
+  color: #ffffff;
+  padding: 0.5rem 1.5rem;
+  border-radius: 20px;
+  font-family: var(--font-montserrat), Arial, sans-serif;
+  font-size: 1rem;
+  font-weight: 500;
+  z-index: 10001;
+}
+
+/* Tablet Styles */
+@media (min-width: 768px) {
+  .gallery {
+    margin: 4rem 0;
+    padding: 3rem 0;
+  }
+
+  .galleryGrid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+
+  .closeButton {
+    top: 2rem;
+    right: 2rem;
+    font-size: 3rem;
+    width: 60px;
+    height: 60px;
+    border: 3px solid #ffffff;
+  }
+
+  .navButton {
+    width: 70px;
+    height: 70px;
+    font-size: 5rem;
+    border: 3px solid #ffffff;
+    padding-bottom: 5px;
+  }
+
+  .navButtonPrev {
+    left: 2rem;
+  }
+
+  .navButtonNext {
+    right: 2rem;
+  }
+
+  .imageCounter {
+    font-size: 1.1rem;
+    padding: 0.75rem 2rem;
+  }
+}
+
+/* Desktop Styles */
+@media (min-width: 1024px) {
+  .gallery {
+    margin: 5rem 0;
+    padding: 4rem 0;
+  }
+
+  .galleryGrid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+  }
+
+  .closeButton {
+    top: 3rem;
+    right: 3rem;
+  }
+
+  .navButtonPrev {
+    left: 3rem;
+  }
+
+  .navButtonNext {
+    right: 3rem;
+  }
+
+  .imageCounter {
+    font-size: 1.2rem;
+  }
+}
+
+/* Mobile small - single column navigation */
+@media (max-width: 480px) {
+  .navButton {
+    width: 50px;
+    height: 50px;
+    font-size: 3rem;
+    padding-bottom: 3px;
+  }
+
+  .navButtonPrev {
+    left: 0.5rem;
+  }
+
+  .navButtonNext {
+    right: 0.5rem;
+  }
+
+  .closeButton {
+    top: 0.5rem;
+    right: 0.5rem;
+    width: 45px;
+    height: 45px;
+    font-size: 2rem;
+  }
+
+  .imageCounter {
+    bottom: 1rem;
+    font-size: 0.9rem;
+    padding: 0.5rem 1rem;
+  }
+}

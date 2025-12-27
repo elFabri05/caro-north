@@ -38,6 +38,9 @@
   width: 100%;
   height: 100vh;
   overflow: hidden;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
 
   /* Third background image - fixed */
   background: linear-gradient(rgba(66, 91, 114, 0.3), rgba(66, 91, 114, 0.3)),
@@ -46,6 +49,54 @@
   background-position: center;
   background-repeat: no-repeat;
   background-attachment: fixed;
+}
+
+.supportedByContainer {
+  padding: 2rem 1rem;
+  margin-top: 30px;
+  width: 100%;
+  max-width: 1400px;
+}
+
+.supportedByTitle {
+  font-family: var(--font-bebas), Arial, sans-serif;
+  font-size: 2rem;
+  color: #ffffff;
+  margin: 0 0 3rem 0;
+  text-align: center;
+  letter-spacing: 3px;
+}
+
+.sponsorsGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 2rem;
+  align-items: center;
+  justify-items: center;
+  width: 100%;
+  padding: 0 1rem;
+}
+
+.sponsorLink {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+  padding: 1rem;
+}
+
+.sponsorLink:hover {
+  transform: scale(1.1);
+  opacity: 0.8;
+}
+
+.sponsorLogo {
+  max-width: 120px;
+  max-height: 80px;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  filter: brightness(0) invert(1);
 }
 
 /* Mobile First - Text Container */
@@ -100,6 +151,26 @@
     font-size: 1.3rem;
     text-align: left;
   }
+
+  .supportedByTitle {
+    font-size: 2.8rem;
+  }
+
+  .supportedByContainer {
+    margin-top: 30px;
+    padding: 3rem 2rem;
+  }
+
+  .sponsorsGrid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 3rem;
+    padding: 0 2rem;
+  }
+
+  .sponsorLogo {
+    max-width: 150px;
+    max-height: 100px;
+  }
 }
 
 /* Desktop Styles */
@@ -126,18 +197,114 @@
     font-size: 1.5rem;
     line-height: 2;
   }
+
+  .supportedByTitle {
+    font-size: 3.5rem;
+    margin: 0 0 4rem 0;
+  }
+
+  .supportedByContainer {
+    margin-top: 30px;
+    padding: 4rem 3rem;
+  }
+
+  .sponsorsGrid {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 4rem;
+    padding: 0 3rem;
+  }
+
+  .sponsorLogo {
+    max-width: 180px;
+    max-height: 120px;
+  }
+}
+
+/* Guiding Section - Mobile First */
+.guidingSection {
+  background-color: #a45458;
+  position: relative;
+  z-index: 10;
+  padding: 2rem 1rem;
+  min-height: 100vh;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding-top: 4rem;
+}
+
+.guidingContainer {
+  max-width: 1000px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.guidingTitle {
+  font-family: var(--font-bebas), Arial, sans-serif;
+  font-size: 3rem;
+  color: #ffffff;
+  margin: 0 0 2rem 0;
+  letter-spacing: 3px;
+}
+
+.guidingContent {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.guidingText {
+  font-family: var(--font-montserrat), Arial, sans-serif;
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: #ffffff;
+  margin: 0;
+  white-space: pre-wrap;
+}
+
+/* Tablet Styles for Guiding */
+@media (min-width: 768px) {
+  .guidingSection {
+    padding: 3rem 2rem;
+    padding-top: 5rem;
+  }
+
+  .guidingTitle {
+    font-size: 4rem;
+  }
+
+  .guidingText {
+    font-size: 1.2rem;
+    line-height: 2;
+  }
+}
+
+/* Desktop Styles for Guiding */
+@media (min-width: 1024px) {
+  .guidingSection {
+    padding: 5rem 3rem;
+    padding-top: 6rem;
+  }
+
+  .guidingTitle {
+    font-size: 5rem;
+  }
+
+  .guidingText {
+    font-size: 1.3rem;
+    line-height: 2.2;
+  }
 }
 
 /* Expeditions Section - Mobile First */
-.expeditionsSection {
-  background-color: #a45458;
+.adventuresSection {
+  background-color: #b48d4c;
   position: relative;
   z-index: 10;
   padding: 2rem 1rem;
   min-height: 100vh;
 }
 
-.expeditionsContainer {
+.adventuresContainer {
   max-width: 1400px;
   margin: 0 auto;
   position: relative;
@@ -175,37 +342,68 @@
   opacity: 0.7;
 }
 
-.expeditionsGrid {
+.adventuresGrid {
   display: grid;
   grid-template-columns: 1fr;
   gap: 2rem;
 }
 
-.expeditionCard {
+.adventureCard {
   background-color: #ffffff;
   border-radius: 8px;
   overflow: hidden;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+  display: block;
+  cursor: pointer;
 }
 
-.expeditionCard:hover {
+.adventureCard:hover {
   transform: translateY(-5px);
   box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
 }
 
-.expeditionImage {
+.adventureImage {
   width: 100%;
   height: 250px;
   background-size: cover;
   background-position: center;
   background-color: #e0e0e0;
+  position: relative;
 }
 
-.expeditionContent {
+.dateTag {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background-color: rgba(66, 91, 114, 0.9);
+  color: #ffffff;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  font-family: var(--font-montserrat), Arial, sans-serif;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.filmTag {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  background-color: rgba(164, 84, 88, 0.9);
+  color: #ffffff;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  font-family: var(--font-montserrat), Arial, sans-serif;
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.adventureContent {
   padding: 1.5rem;
 }
 
-.expeditionTitle {
+.adventureTitle {
   font-family: var(--font-bebas), Arial, sans-serif;
   font-size: 1.8rem;
   color: #425b72;
@@ -213,7 +411,7 @@
   letter-spacing: 1px;
 }
 
-.expeditionDescription {
+.adventureDescription {
   font-family: var(--font-montserrat), Arial, sans-serif;
   font-size: 1rem;
   color: #666666;
@@ -237,7 +435,7 @@
 
 /* Tablet Styles */
 @media (min-width: 768px) {
-  .expeditionsSection {
+  .adventuresSection {
     padding: 3rem 2rem;
   }
 
@@ -245,31 +443,31 @@
     font-size: 4rem;
   }
 
-  .expeditionsGrid {
+  .adventuresGrid {
     grid-template-columns: repeat(2, 1fr);
     gap: 2.5rem;
   }
 
-  .expeditionImage {
+  .adventureImage {
     height: 280px;
   }
 
-  .expeditionContent {
+  .adventureContent {
     padding: 2rem;
   }
 
-  .expeditionTitle {
+  .adventureTitle {
     font-size: 2rem;
   }
 
-  .expeditionDescription {
+  .adventureDescription {
     font-size: 1.05rem;
   }
 }
 
 /* Desktop Styles */
 @media (min-width: 1024px) {
-  .expeditionsSection {
+  .adventuresSection {
     padding: 3rem 3rem;
   }
 
@@ -277,20 +475,20 @@
     font-size: 5rem;
   }
 
-  .expeditionsGrid {
+  .adventuresGrid {
     grid-template-columns: repeat(4, 1fr);
     gap: 2rem;
   }
 
-  .expeditionImage {
+  .adventureImage {
     height: 300px;
   }
 
-  .expeditionTitle {
+  .adventureTitle {
     font-size: 1.9rem;
   }
 
-  .expeditionDescription {
+  .adventureDescription {
     font-size: 1rem;
   }
 }
@@ -585,7 +783,7 @@
 @media (min-width: 768px) {
   .heroFourth {
     flex-direction: row;
-    justify-content: center;
+    justify-content: flex-start;
     gap: 3rem;
     padding-left: 3rem;
     padding-right: 3rem;
@@ -608,6 +806,7 @@
 /* Desktop Styles for Additional Links */
 @media (min-width: 1024px) {
   .heroFourth {
+    justify-content: flex-start;
     padding-left: 5rem;
     padding-right: 5rem;
     gap: 5rem;

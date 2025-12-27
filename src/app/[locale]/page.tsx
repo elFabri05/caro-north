@@ -2,6 +2,13 @@ import Navbar from '@/components/Navbar';
 import Link from 'next/link';
 import { getTranslations } from 'next-intl/server';
 import styles from './page.module.css';
+import { getFirstAdventureImage } from '@/lib/getAdventureImages';
+
+// Extract year from date string
+function extractYear(dateString: string): string {
+  const match = dateString.match(/\d{4}/);
+  return match ? match[0] : dateString;
+}
 
 export default async function Home({
   params
@@ -10,55 +17,36 @@ export default async function Home({
 }) {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: 'home' });
-  const tFilms = await getTranslations({ locale, namespace: 'films' });
+  const tExpeditions = await getTranslations({ locale, namespace: 'expeditions' });
 
-  const expeditions = [
+  const adventures = [
     {
       id: 1,
       key: 'montBlanc',
       slug: 'via-sedna',
-      image: '/images/expedition-1.jpg',
+      image: getFirstAdventureImage('via-sedna'),
+      hasFilm: true,
     },
     {
       id: 2,
       key: 'patagonia',
       slug: 'rock-n-road',
-      image: '/images/expedition-2.jpg',
+      image: getFirstAdventureImage('rock-n-road'),
+      hasFilm: false,
     },
     {
       id: 3,
-      key: 'himalayan',
+      key: 'usa2019',
       slug: 'usa-2019',
-      image: '/images/expedition-3.jpg',
+      image: getFirstAdventureImage('usa-2019'),
+      hasFilm: false,
     },
     {
       id: 4,
-      key: 'norwegian',
+      key: 'kishtwar2019',
       slug: 'kishtwar-expedition-2019',
-      image: '/images/expedition-4.jpg',
-    },
-  ];
-
-  const films = [
-    {
-      id: 1,
-      key: 'summitStories',
-      image: '/images/film-1.jpg',
-    },
-    {
-      id: 2,
-      key: 'iceFire',
-      image: '/images/film-2.jpg',
-    },
-    {
-      id: 3,
-      key: 'verticalWorld',
-      image: '/images/film-3.jpg',
-    },
-    {
-      id: 4,
-      key: 'mountainSpirit',
-      image: '/images/film-4.jpg',
+      image: getFirstAdventureImage('kishtwar-expedition-2019'),
+      hasFilm: false,
     },
   ];
 
@@ -74,63 +62,208 @@ export default async function Home({
         </div>
       </div>
 
-      <section className={styles.expeditionsSection}>
-        <div className={styles.expeditionsContainer}>
-          <div className={styles.sectionHeader}>
-            <Link href={`/${locale}/expeditions`} style={{ textDecoration: 'none', color: 'inherit' }}>
-              <h2 className={styles.sectionTitle}>{t('expeditionsTitle')}</h2>
-            </Link>
+      <section className={styles.guidingSection}>
+        <div className={styles.guidingContainer}>
+          <h2 className={styles.guidingTitle}>{t('guidingTitle')}</h2>
+          <div className={styles.guidingContent}>
+            <p className={styles.guidingText}>{t('guidingText')}</p>
           </div>
-          <div className={styles.expeditionsGrid}>
-            {expeditions.map((expedition) => (
-              <div key={expedition.id} className={styles.expeditionCard}>
-                <div
-                  className={styles.expeditionImage}
-                  style={{ backgroundImage: `url(${expedition.image})` }}
-                />
-                <div className={styles.expeditionContent}>
-                  <h3 className={styles.expeditionTitle}>{t(`expeditions.${expedition.key}.title`)}</h3>
-                  <p className={styles.expeditionDescription}>{t(`expeditions.${expedition.key}.description`)}</p>
-                  <Link href={`/${locale}/expeditions/${expedition.slug}`} className={styles.readMore}>
-                    {t('readMore')} →
-                  </Link>
-                </div>
-              </div>
-            ))}
-          </div>
-          <Link href={`/${locale}/expeditions`} className={styles.seeAllLink}>
-            {t('seeAll')} →
-          </Link>
         </div>
       </section>
 
-      <div className={styles.heroThird}></div>
+      <div className={styles.heroThird}>
+        <div className={styles.supportedByContainer}>
+          <h2 className={styles.supportedByTitle}>{t('supportedBy')}</h2>
+          <div className={styles.sponsorsGrid}>
+            <a
+              href="https://www.thenorthface.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className={styles.sponsorLink}
+              aria-label="The North Face"
+            >
+              <img
+                src="/images/sponsors/the-north-face.png"
+                alt="The North Face"
+                className={styles.sponsorLogo}
+              />
+            </a>
+            <a
+              href="https://www.julbo.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className={styles.sponsorLink}
+              aria-label="Julbo"
+            >
+              <img
+                src="/images/sponsors/julbo.png"
+                alt="Julbo"
+                className={styles.sponsorLogo}
+              />
+            </a>
+            <a
+              href="https://www.petzl.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className={styles.sponsorLink}
+              aria-label="Petzl"
+            >
+              <img
+                src="/images/sponsors/petzl.png"
+                alt="Petzl"
+                className={styles.sponsorLogo}
+              />
+            </a>
+            <a
+              href="https://www.scarpa.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className={styles.sponsorLink}
+              aria-label="Scarpa"
+            >
+              <img
+                src="/images/sponsors/scarpa.png"
+                alt="Scarpa"
+                className={styles.sponsorLogo}
+              />
+            </a>
+            <a
+              href="https://www.bergfreunde.de"
+              target="_blank"
+              rel="noopener noreferrer"
+              className={styles.sponsorLink}
+              aria-label="Bergfreunde"
+            >
+              <img
+                src="/images/sponsors/bergfreunde.png"
+                alt="Bergfreunde"
+                className={styles.sponsorLogo}
+              />
+            </a>
+            <a
+              href="https://www.marker.net"
+              target="_blank"
+              rel="noopener noreferrer"
+              className={styles.sponsorLink}
+              aria-label="Marker"
+            >
+              <img
+                src="/images/sponsors/marker.png"
+                alt="Marker"
+                className={styles.sponsorLogo}
+              />
+            </a>
+            <a
+              href="https://www.dalbello.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className={styles.sponsorLink}
+              aria-label="Dalbello"
+            >
+              <img
+                src="/images/sponsors/dalbello.png"
+                alt="Dalbello"
+                className={styles.sponsorLogo}
+              />
+            </a>
+            <a
+              href="https://www.volkl.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className={styles.sponsorLink}
+              aria-label="Volkl"
+            >
+              <img
+                src="/images/sponsors/volkl.png"
+                alt="Volkl"
+                className={styles.sponsorLogo}
+              />
+            </a>
+            <a
+              href="https://www.protectourwinters.org"
+              target="_blank"
+              rel="noopener noreferrer"
+              className={styles.sponsorLink}
+              aria-label="POW Protect Our Winters"
+            >
+              <img
+                src="/images/sponsors/pow.png"
+                alt="POW Protect Our Winters"
+                className={styles.sponsorLogo}
+              />
+            </a>
+            <a
+              href="https://www.trek-n-eat.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className={styles.sponsorLink}
+              aria-label="Trek'n Eat"
+            >
+              <img
+                src="/images/sponsors/trek-n-eat.png"
+                alt="Trek'n Eat"
+                className={styles.sponsorLogo}
+              />
+            </a>
+            <a
+              href="https://www.biozeit.de"
+              target="_blank"
+              rel="noopener noreferrer"
+              className={styles.sponsorLink}
+              aria-label="Oskri"
+            >
+              <img
+                src="/images/sponsors/oskri.png"
+                alt="Oskri"
+                className={styles.sponsorLogo}
+              />
+            </a>
+          </div>
+        </div>
+      </div>
 
-      <section className={styles.filmsSection}>
-        <div className={styles.filmsContainer}>
+      <section className={styles.adventuresSection}>
+        <div className={styles.adventuresContainer}>
           <div className={styles.sectionHeader}>
-            <Link href={`/${locale}/films`} style={{ textDecoration: 'none', color: 'inherit' }}>
-              <h2 className={styles.filmsSectionTitle}>{t('filmsTitle')}</h2>
+            <Link href={`/${locale}/adventures`} style={{ textDecoration: 'none', color: 'inherit' }}>
+              <h2 className={styles.sectionTitle}>{t('expeditionsTitle')}</h2>
             </Link>
           </div>
-          <div className={styles.filmsGrid}>
-            {films.map((film) => (
-              <div key={film.id} className={styles.filmCard}>
-                <div
-                  className={styles.filmImage}
-                  style={{ backgroundImage: `url(${film.image})` }}
-                />
-                <div className={styles.filmContent}>
-                  <h3 className={styles.filmTitle}>{tFilms(`${film.key}.title`)}</h3>
-                  <p className={styles.filmDescription}>{tFilms(`${film.key}.description`)}</p>
-                  <Link href={`/${locale}/films`} className={styles.readMore}>
-                    {t('watchNow')} →
-                  </Link>
-                </div>
-              </div>
-            ))}
+          <div className={styles.adventuresGrid}>
+            {adventures.map((adventure) => {
+              const year = extractYear(tExpeditions(`${adventure.key}.date`));
+              return (
+                <Link
+                  key={adventure.id}
+                  href={`/${locale}/adventures/${adventure.slug}`}
+                  className={styles.adventureCard}
+                  style={{ textDecoration: 'none' }}
+                >
+                  <div
+                    className={styles.adventureImage}
+                    style={{ backgroundImage: `url(${adventure.image})` }}
+                  >
+                    <div className={styles.dateTag}>{year}</div>
+                    {adventure.hasFilm && (
+                      <div className={styles.filmTag}>{t('filmTag')}</div>
+                    )}
+                  </div>
+                  <div className={styles.adventureContent}>
+                    <h3 className={styles.adventureTitle}>{tExpeditions(`${adventure.key}.title`)}</h3>
+                    <p className={styles.adventureDescription}>
+                      {tExpeditions(`${adventure.key}.description`).length > 200
+                        ? tExpeditions(`${adventure.key}.description`).substring(0, 200) + '...'
+                        : tExpeditions(`${adventure.key}.description`)}
+                    </p>
+                    <span className={styles.readMore}>
+                      {t('readMore')} →
+                    </span>
+                  </div>
+                </Link>
+              );
+            })}
           </div>
-          <Link href={`/${locale}/films`} className={styles.seeAllLink}>
+          <Link href={`/${locale}/adventures`} className={styles.seeAllLink}>
             {t('seeAll')} →
           </Link>
         </div>
@@ -177,15 +310,6 @@ export default async function Home({
               </a>
             </div>
           </div>
-        </div>
-
-        <div className={styles.additionalLinks}>
-          <Link href={`/${locale}/guiding`} className={styles.additionalLink}>
-            {t('guiding')}
-          </Link>
-          <Link href={`/${locale}/talks`} className={styles.additionalLink}>
-            {t('talks')}
-          </Link>
         </div>
       </div>
     </>
