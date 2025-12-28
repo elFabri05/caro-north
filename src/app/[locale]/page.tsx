@@ -22,31 +22,31 @@ export default async function Home({
   const adventures = [
     {
       id: 1,
-      key: 'montBlanc',
+      key: 'viaSedna',
       slug: 'via-sedna',
       image: getFirstAdventureImage('via-sedna'),
       hasFilm: true,
     },
     {
       id: 2,
-      key: 'patagonia',
+      key: 'iAmNorth',
+      slug: 'i-am-north',
+      image: getFirstAdventureImage('i-am-north'),
+      hasFilm: true,
+    },
+    {
+      id: 3,
+      key: 'swissRoad',
       slug: 'rock-n-road',
       image: getFirstAdventureImage('rock-n-road'),
       hasFilm: false,
     },
     {
-      id: 3,
-      key: 'usa2019',
-      slug: 'usa-2019',
-      image: getFirstAdventureImage('usa-2019'),
-      hasFilm: false,
-    },
-    {
       id: 4,
-      key: 'kishtwar2019',
-      slug: 'kishtwar-expedition-2019',
-      image: getFirstAdventureImage('kishtwar-expedition-2019'),
-      hasFilm: false,
+      key: 'antarticaSailing',
+      slug: 'antartica-sailing',
+      image: getFirstAdventureImage('antartica-sailing'),
+      hasFilm: true,
     },
   ];
 

@@ -8,10 +8,13 @@ import { getAdventureImages, getFirstAdventureImage } from '@/lib/getAdventureIm
 
 // Map slugs to adventure keys
 const slugToKey: Record<string, string> = {
-  'via-sedna': 'montBlanc',
-  'rock-n-road': 'patagonia',
+  'via-sedna': 'viaSedna',
+  'i-am-north': 'iAmNorth',
+  'rock-n-road': 'swissRoad',
+  'antartica-sailing': 'antarticaSailing',
   'usa-2019': 'usa2019',
   'kishtwar-expedition-2019': 'kishtwar2019',
+  'frey': 'freyFirstAscents',
   'kishtwar-first-ascents-2016': 'kishtwar2016',
   'onsighting-astroman-yosemite-2015': 'astroman',
   'north-faces-chamonix': 'northfaceschamonix',

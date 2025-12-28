@@ -6,25 +6,31 @@ import { getFirstAdventureImage } from '@/lib/getAdventureImages';
 
 // All adventures in chronological order (newest first)
 const adventureKeys = [
-  'montBlanc',       // Via Sedna - Summer 2024
-  'patagonia',       // Rock'n'Road - Summer 2020
-  'usa2019',         // USA 2019
-  'kishtwar2019',    // Kishtwar Expedition 2019
-  'kishtwar2016',    // Kishtwar First Ascents 2016
-  'astroman',        // Onsighting Astroman, Yosemite 2015
+  'viaSedna',       // Via Sedna - Summer 2022
+  'iAmNorth',       // I am North - 2021
+  'swissRoad',      // Rock'n'Road - Summer 2020
+  'antarticaSailing', // Antarctica Sailing/Skiing Expedition - 2019
+  'usa2019',        // USA 2019
+  'kishtwar2019',   // Kishtwar Expedition 2019
+  'freyFirstAscents', // Patagonia First ascents Frey - 2017
+  'kishtwar2016',   // Kishtwar First Ascents 2016
+  'astroman',       // Onsighting Astroman, Yosemite 2015
   'northfaceschamonix', // North Faces Chamonix 2015
-  'adschalaga',      // India - Adschalaga! 2015
-  'cerrotorre',      // Cerro Torre 2015
-  'patagonia2014',   // Patagonia 2014
-  'patagonia2013',   // 2 Girls in Patagonia 2013
+  'adschalaga',     // India - Adschalaga! 2015
+  'cerrotorre',     // Cerro Torre 2015
+  'patagonia2014',  // Patagonia 2014
+  'patagonia2013',  // 2 Girls in Patagonia 2013
 ];
 
 // Slugs for URL paths
 const adventureSlugs: Record<string, string> = {
-  montBlanc: 'via-sedna',
-  patagonia: 'rock-n-road',
+  viaSedna: 'via-sedna',
+  iAmNorth: 'i-am-north',
+  swissRoad: 'rock-n-road',
+  antarticaSailing: 'antartica-sailing',
   usa2019: 'usa-2019',
   kishtwar2019: 'kishtwar-expedition-2019',
+  freyFirstAscents: 'frey',
   kishtwar2016: 'kishtwar-first-ascents-2016',
   astroman: 'onsighting-astroman-yosemite-2015',
   northfaceschamonix: 'north-faces-chamonix',
@@ -36,10 +42,13 @@ const adventureSlugs: Record<string, string> = {
 
 // Film availability for adventures
 const adventureHasFilm: Record<string, boolean> = {
-  montBlanc: true,
-  patagonia: false,
+  viaSedna: true,
+  iAmNorth: true,
+  swissRoad: false,
+  antarticaSailing: true,
   usa2019: false,
   kishtwar2019: false,
+  freyFirstAscents: true,
   kishtwar2016: false,
   astroman: false,
   northfaceschamonix: false,
