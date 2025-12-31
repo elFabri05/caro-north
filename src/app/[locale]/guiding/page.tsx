@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import Navbar from '@/components/Navbar';
 import GuidingImageGallery from '@/components/GuidingImageGallery';
 import styles from './guiding.module.css';
@@ -14,9 +15,11 @@ export default async function Guiding() {
       <div className={styles.guidingPage}>
         <div className={styles.header}>
           <div className={styles.headerContent}>
-            <img
+            <Image
               src="/images/uiagm-logo.png"
               alt="UIAGM Mountain Guide Certification"
+              width={100}
+              height={100}
               className={styles.logo}
             />
             <h1 className={styles.pageTitle}>{t('pageTitle')}</h1>

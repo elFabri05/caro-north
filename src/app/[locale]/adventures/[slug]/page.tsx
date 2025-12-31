@@ -1,5 +1,6 @@
 import Navbar from '@/components/Navbar';
 import ImageGallery from '@/components/ImageGallery';
+import YouTubeEmbed from '@/components/YouTubeEmbed';
 import styles from './adventure.module.css';
 import { getTranslations } from 'next-intl/server';
 import { notFound } from 'next/navigation';
@@ -116,6 +117,21 @@ export default async function AdventurePage({ params }: AdventurePageProps) {
 
             {/* Image Gallery */}
             <ImageGallery images={images} adventureSlug={slug} />
+
+            {/* YouTube Videos */}
+            {slug === 'antartica-sailing' && (
+              <>
+                <YouTubeEmbed videoId="NBaCMo6lS-I" title={title} />
+                <YouTubeEmbed videoId="BTdJoyE771w" title={title} />
+                <YouTubeEmbed videoId="RD5fH7vZY1s" title={title} />
+                <YouTubeEmbed videoId="zOBuEqGO5m8" title={title} />
+                <YouTubeEmbed videoId="zg-f1ojm0jk" title={title} />
+              </>
+            )}
+
+            {slug === 'frey' && (
+              <YouTubeEmbed videoId="OGMEnCLuwg8" title={title} />
+            )}
 
             <div className={styles.navigation}>
               <Link href={`/${locale}/adventures`} className={styles.backButton}>
