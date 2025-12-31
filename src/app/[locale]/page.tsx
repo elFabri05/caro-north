@@ -1,5 +1,6 @@
 import Navbar from '@/components/Navbar';
 import Link from 'next/link';
+import Image from 'next/image';
 import { getTranslations } from 'next-intl/server';
 import styles from './page.module.css';
 import { getFirstAdventureImage } from '@/lib/getAdventureImages';
@@ -64,158 +65,199 @@ export default async function Home({
 
       <section className={styles.guidingSection}>
         <div className={styles.guidingContainer}>
-          <h2 className={styles.guidingTitle}>{t('guidingTitle')}</h2>
+          <div className={styles.guidingHeader}>
+            <Image
+              src="/images/uiagm-logo.png"
+              alt="UIAGM Mountain Guide Certification"
+              width={100}
+              height={100}
+              className={styles.guidingLogo}
+            />
+            <h2 className={styles.guidingTitle}>{t('guidingTitle')}</h2>
+          </div>
           <div className={styles.guidingContent}>
             <p className={styles.guidingText}>{t('guidingText')}</p>
           </div>
+          <Link href={`/${locale}/guiding`} className={styles.guidingReadMore}>
+            {t('readMore')} →
+          </Link>
         </div>
       </section>
 
       <div className={styles.heroThird}>
         <div className={styles.supportedByContainer}>
           <h2 className={styles.supportedByTitle}>{t('supportedBy')}</h2>
-          <div className={styles.sponsorsGrid}>
+
+          {/* Catenary Layout - Three Layers */}
+          <div className={styles.catenaryContainer}>
+            {/* Top Layer - Yeti, The North Face, Scarpa */}
+            <a
+              href="https://www.yeti.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className={`${styles.catenarySponsor} ${styles.topLayer} ${styles.topLeft}`}
+              aria-label="Yeti"
+            >
+              <Image
+                src="/images/sponsors/yeti.png"
+                alt="Yeti"
+                width={170}
+                height={115}
+                className={styles.topLayerLogo}
+              />
+            </a>
             <a
               href="https://www.thenorthface.com"
               target="_blank"
               rel="noopener noreferrer"
-              className={styles.sponsorLink}
+              className={`${styles.catenarySponsor} ${styles.topLayer} ${styles.topCenter}`}
               aria-label="The North Face"
             >
-              <img
+              <Image
                 src="/images/sponsors/the-north-face.png"
                 alt="The North Face"
-                className={styles.sponsorLogo}
-              />
-            </a>
-            <a
-              href="https://www.julbo.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className={styles.sponsorLink}
-              aria-label="Julbo"
-            >
-              <img
-                src="/images/sponsors/julbo.png"
-                alt="Julbo"
-                className={styles.sponsorLogo}
-              />
-            </a>
-            <a
-              href="https://www.petzl.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className={styles.sponsorLink}
-              aria-label="Petzl"
-            >
-              <img
-                src="/images/sponsors/petzl.png"
-                alt="Petzl"
-                className={styles.sponsorLogo}
+                width={280}
+                height={185}
+                className={`${styles.topLayerLogo} ${styles.topCenterLogo}`}
               />
             </a>
             <a
               href="https://www.scarpa.com"
               target="_blank"
               rel="noopener noreferrer"
-              className={styles.sponsorLink}
+              className={`${styles.catenarySponsor} ${styles.topLayer} ${styles.topRight}`}
               aria-label="Scarpa"
             >
-              <img
+              <Image
                 src="/images/sponsors/scarpa.png"
                 alt="Scarpa"
-                className={styles.sponsorLogo}
+                width={190}
+                height={130}
+                className={`${styles.topLayerLogo} ${styles.scarpaLogo}`}
+              />
+            </a>
+
+            {/* Middle Layer - Julbo, Petzl, Trek'n Eat, Marker */}
+            <a
+              href="https://www.julbo.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className={`${styles.catenarySponsor} ${styles.middleLayer} ${styles.middle1}`}
+              aria-label="Julbo"
+            >
+              <Image
+                src="/images/sponsors/julbo.png"
+                alt="Julbo"
+                width={130}
+                height={85}
+                className={styles.middleLayerLogo}
               />
             </a>
             <a
-              href="https://www.bergfreunde.de"
+              href="https://www.petzl.com"
               target="_blank"
               rel="noopener noreferrer"
-              className={styles.sponsorLink}
-              aria-label="Bergfreunde"
+              className={`${styles.catenarySponsor} ${styles.middleLayer} ${styles.middle2}`}
+              aria-label="Petzl"
             >
-              <img
-                src="/images/sponsors/bergfreunde.png"
-                alt="Bergfreunde"
-                className={styles.sponsorLogo}
-              />
-            </a>
-            <a
-              href="https://www.marker.net"
-              target="_blank"
-              rel="noopener noreferrer"
-              className={styles.sponsorLink}
-              aria-label="Marker"
-            >
-              <img
-                src="/images/sponsors/marker.png"
-                alt="Marker"
-                className={styles.sponsorLogo}
-              />
-            </a>
-            <a
-              href="https://www.dalbello.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className={styles.sponsorLink}
-              aria-label="Dalbello"
-            >
-              <img
-                src="/images/sponsors/dalbello.png"
-                alt="Dalbello"
-                className={styles.sponsorLogo}
-              />
-            </a>
-            <a
-              href="https://www.volkl.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className={styles.sponsorLink}
-              aria-label="Volkl"
-            >
-              <img
-                src="/images/sponsors/volkl.png"
-                alt="Volkl"
-                className={styles.sponsorLogo}
-              />
-            </a>
-            <a
-              href="https://www.protectourwinters.org"
-              target="_blank"
-              rel="noopener noreferrer"
-              className={styles.sponsorLink}
-              aria-label="POW Protect Our Winters"
-            >
-              <img
-                src="/images/sponsors/pow.png"
-                alt="POW Protect Our Winters"
-                className={styles.sponsorLogo}
+              <Image
+                src="/images/sponsors/petzl.png"
+                alt="Petzl"
+                width={130}
+                height={85}
+                className={styles.middleLayerLogo}
               />
             </a>
             <a
               href="https://www.trek-n-eat.com"
               target="_blank"
               rel="noopener noreferrer"
-              className={styles.sponsorLink}
+              className={`${styles.catenarySponsor} ${styles.middleLayer} ${styles.middle3}`}
               aria-label="Trek'n Eat"
             >
-              <img
+              <Image
                 src="/images/sponsors/trek-n-eat.png"
                 alt="Trek'n Eat"
-                className={styles.sponsorLogo}
+                width={130}
+                height={85}
+                className={styles.middleLayerLogo}
               />
             </a>
             <a
-              href="https://www.biozeit.de"
+              href="https://www.marker.net"
               target="_blank"
               rel="noopener noreferrer"
-              className={styles.sponsorLink}
-              aria-label="Oskri"
+              className={`${styles.catenarySponsor} ${styles.middleLayer} ${styles.middle4}`}
+              aria-label="Marker"
             >
-              <img
-                src="/images/sponsors/oskri.png"
-                alt="Oskri"
-                className={styles.sponsorLogo}
+              <Image
+                src="/images/sponsors/marker.png"
+                alt="Marker"
+                width={130}
+                height={85}
+                className={styles.middleLayerLogo}
+              />
+            </a>
+
+            {/* Bottom Layer - Bergfreunde, Volkl, OneDay, Supernatural */}
+            <a
+              href="https://www.bergfreunde.eu/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className={`${styles.catenarySponsor} ${styles.bottomLayer} ${styles.bottom1}`}
+              aria-label="Bergfreunde"
+            >
+              <Image
+                src="/images/sponsors/bergfreunde.png"
+                alt="Bergfreunde"
+                width={120}
+                height={80}
+                className={styles.bottomLayerLogo}
+              />
+            </a>
+            <a
+              href="https://www.volkl.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className={`${styles.catenarySponsor} ${styles.bottomLayer} ${styles.bottom2}`}
+              aria-label="Volkl"
+            >
+              <Image
+                src="/images/sponsors/volkl.png"
+                alt="Volkl"
+                width={120}
+                height={80}
+                className={styles.bottomLayerLogo}
+              />
+            </a>
+            <a
+              href="https://www.oneday.ch/en"
+              target="_blank"
+              rel="noopener noreferrer"
+              className={`${styles.catenarySponsor} ${styles.bottomLayer} ${styles.bottom3}`}
+              aria-label="OneDay"
+            >
+              <Image
+                src="/images/sponsors/oneday.png"
+                alt="OneDay"
+                width={120}
+                height={80}
+                className={styles.bottomLayerLogo}
+              />
+            </a>
+            <a
+              href="https://www.supernatural.cc"
+              target="_blank"
+              rel="noopener noreferrer"
+              className={`${styles.catenarySponsor} ${styles.bottomLayer} ${styles.bottom4}`}
+              aria-label="Supernatural"
+            >
+              <Image
+                src="/images/sponsors/supernatural_logo.png"
+                alt="Supernatural"
+                width={160}
+                height={110}
+                className={`${styles.bottomLayerLogo} ${styles.supernaturalLogo}`}
               />
             </a>
           </div>

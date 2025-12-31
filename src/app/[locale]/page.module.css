@@ -52,10 +52,13 @@
 }
 
 .supportedByContainer {
-  padding: 2rem 1rem;
-  margin-top: 30px;
+  padding: 2rem 1rem 3rem 1rem;
+  margin-top: 0;
   width: 100%;
   max-width: 1400px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .supportedByTitle {
@@ -67,36 +70,63 @@
   letter-spacing: 3px;
 }
 
-.sponsorsGrid {
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  gap: 2rem;
-  align-items: center;
-  justify-items: center;
+/* Catenary Container - Mobile First (stacked) */
+.catenaryContainer {
+  position: relative;
   width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1.5rem;
   padding: 0 1rem;
 }
 
-.sponsorLink {
+.catenarySponsor {
   display: flex;
   align-items: center;
   justify-content: center;
   transition: transform 0.3s ease, opacity 0.3s ease;
-  padding: 1rem;
+  position: relative;
 }
 
-.sponsorLink:hover {
-  transform: scale(1.1);
+.catenarySponsor:hover {
+  transform: scale(1.15);
   opacity: 0.8;
 }
 
-.sponsorLogo {
-  max-width: 120px;
-  max-height: 80px;
-  width: auto;
-  height: auto;
+/* Mobile - Logo sizes */
+.topLayerLogo {
+  max-width: 130px;
+  max-height: 90px;
+  width: auto !important;
+  height: auto !important;
   object-fit: contain;
   filter: brightness(0) invert(1);
+}
+
+.middleLayerLogo,
+.bottomLayerLogo {
+  max-width: 110px;
+  max-height: 75px;
+  width: auto !important;
+  height: auto !important;
+  object-fit: contain;
+  filter: brightness(0) invert(1);
+}
+
+.topCenterLogo {
+  max-width: 200px !important;
+  max-height: 130px !important;
+}
+
+.scarpaLogo {
+  max-width: 145px !important;
+  max-height: 100px !important;
+}
+
+.supernaturalLogo {
+  max-width: 140px !important;
+  max-height: 95px !important;
 }
 
 /* Mobile First - Text Container */
@@ -154,22 +184,109 @@
 
   .supportedByTitle {
     font-size: 2.8rem;
+    margin-bottom: 4rem;
   }
 
   .supportedByContainer {
-    margin-top: 30px;
-    padding: 3rem 2rem;
+    padding: 2rem 2rem 4rem 2rem;
   }
 
-  .sponsorsGrid {
-    grid-template-columns: repeat(3, 1fr);
-    gap: 3rem;
-    padding: 0 2rem;
+  /* Three-layer catenary curve for tablet */
+  .catenaryContainer {
+    position: relative;
+    height: 400px;
+    width: 100%;
+    max-width: 1200px;
+    flex-direction: row;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 0;
   }
 
-  .sponsorLogo {
-    max-width: 150px;
-    max-height: 100px;
+  .catenarySponsor {
+    position: absolute;
+    transform: translateX(-50%);
+  }
+
+  /* Top Layer - Highest (Yeti, The North Face, Scarpa) */
+  .topLeft {
+    left: 15%;
+    top: calc(0.5 * 20px);
+  }
+  .topCenter {
+    left: 50%;
+    top: 0;
+  }
+  .topRight {
+    left: 85%;
+    top: calc(0.5 * 20px);
+  }
+
+  /* Middle Layer (Julbo, Petzl, Trek'n Eat, Marker) */
+  .middle1 {
+    left: 10%;
+    top: calc(3.5 * 20px);
+  }
+  .middle2 {
+    left: 33%;
+    top: calc(5 * 20px);
+  }
+  .middle3 {
+    left: 67%;
+    top: calc(5 * 20px);
+  }
+  .middle4 {
+    left: 90%;
+    top: calc(3.5 * 20px);
+  }
+
+  /* Bottom Layer - Lowest (Bergfreunde, Volkl, OneDay, Supernatural) */
+  .bottom1 {
+    left: 10%;
+    top: calc(8 * 20px);
+  }
+  .bottom2 {
+    left: 33%;
+    top: calc(9.5 * 20px);
+  }
+  .bottom3 {
+    left: 67%;
+    top: calc(9.5 * 20px);
+  }
+  .bottom4 {
+    left: 90%;
+    top: calc(8 * 20px);
+  }
+
+  /* Tablet logo sizes */
+  .topLayerLogo {
+    max-width: 150px !important;
+    max-height: 100px !important;
+  }
+
+  .topCenterLogo {
+    max-width: 230px !important;
+    max-height: 150px !important;
+  }
+
+  .scarpaLogo {
+    max-width: 170px !important;
+    max-height: 115px !important;
+  }
+
+  .supernaturalLogo {
+    max-width: 130px !important;
+    max-height: 90px !important;
+  }
+
+  .middleLayerLogo {
+    max-width: 110px !important;
+    max-height: 75px !important;
+  }
+
+  .bottomLayerLogo {
+    max-width: 100px !important;
+    max-height: 70px !important;
   }
 }
 
@@ -200,23 +317,98 @@
 
   .supportedByTitle {
     font-size: 3.5rem;
-    margin: 0 0 4rem 0;
+    margin-bottom: 5rem;
   }
 
   .supportedByContainer {
-    margin-top: 30px;
-    padding: 4rem 3rem;
+    padding: 3rem 3rem 5rem 3rem;
   }
 
-  .sponsorsGrid {
-    grid-template-columns: repeat(4, 1fr);
-    gap: 4rem;
-    padding: 0 3rem;
+  /* Enhanced three-layer catenary curve for desktop */
+  .catenaryContainer {
+    height: 450px;
+    max-width: 1400px;
   }
 
-  .sponsorLogo {
-    max-width: 180px;
-    max-height: 120px;
+  /* Top Layer - Highest (Yeti, The North Face, Scarpa) */
+  .topLeft {
+    left: 15%;
+    top: calc(-2 * 25px);
+  }
+  .topCenter {
+    left: 50%;
+    top: calc(-2 * 25px);
+  }
+  .topRight {
+    left: 85%;
+    top: calc(-2 * 25px);
+  }
+
+  /* Middle Layer (Julbo, Petzl, Trek'n Eat, Marker) */
+  .middle1 {
+    left: 10%;
+    top: calc(4 * 25px);
+  }
+  .middle2 {
+    left: 33%;
+    top: calc(5.5 * 25px);
+  }
+  .middle3 {
+    left: 67%;
+    top: calc(5.5 * 25px);
+  }
+  .middle4 {
+    left: 90%;
+    top: calc(4 * 25px);
+  }
+
+  /* Bottom Layer - Lowest (Bergfreunde, Volkl, OneDay, Supernatural) */
+  .bottom1 {
+    left: 10%;
+    top: calc(9 * 25px);
+  }
+  .bottom2 {
+    left: 33%;
+    top: calc(10.8 * 25px);
+  }
+  .bottom3 {
+    left: 67%;
+    top: calc(10.8 * 25px);
+  }
+  .bottom4 {
+    left: 90%;
+    top: calc(9 * 25px);
+  }
+
+  /* Desktop logo sizes */
+  .topLayerLogo {
+    max-width: 170px !important;
+    max-height: 115px !important;
+  }
+
+  .topCenterLogo {
+    max-width: 280px !important;
+    max-height: 185px !important;
+  }
+
+  .scarpaLogo {
+    max-width: 220px !important;
+    max-height: 150px !important;
+  }
+
+  .supernaturalLogo {
+    max-width: 160px !important;
+    max-height: 110px !important;
+  }
+
+  .middleLayerLogo {
+    max-width: 130px !important;
+    max-height: 85px !important;
+  }
+
+  .bottomLayerLogo {
+    max-width: 120px !important;
+    max-height: 80px !important;
   }
 }
 
@@ -225,12 +417,10 @@
   background-color: #a45458;
   position: relative;
   z-index: 10;
-  padding: 2rem 1rem;
-  min-height: 100vh;
+  padding: 1rem 1rem 2rem 1rem;
   display: flex;
   align-items: flex-start;
   justify-content: center;
-  padding-top: 4rem;
 }
 
 .guidingContainer {
@@ -239,11 +429,26 @@
   text-align: center;
 }
 
+.guidingHeader {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.guidingLogo {
+  width: 60px;
+  height: 60px;
+  object-fit: contain;
+  flex-shrink: 0;
+}
+
 .guidingTitle {
   font-family: var(--font-bebas), Arial, sans-serif;
   font-size: 3rem;
   color: #ffffff;
-  margin: 0 0 2rem 0;
+  margin: 0;
   letter-spacing: 3px;
 }
 
@@ -261,11 +466,36 @@
   white-space: pre-wrap;
 }
 
+.guidingReadMore {
+  font-family: var(--font-montserrat), Arial, sans-serif;
+  font-size: 1.5rem;
+  font-weight: 500;
+  color: #ffffff;
+  text-decoration: none;
+  display: block;
+  text-align: right;
+  margin-top: 1rem;
+  margin-bottom: 0;
+  transition: opacity 0.3s ease;
+}
+
+.guidingReadMore:hover {
+  opacity: 0.7;
+}
+
 /* Tablet Styles for Guiding */
 @media (min-width: 768px) {
   .guidingSection {
-    padding: 3rem 2rem;
-    padding-top: 5rem;
+    padding: 1.5rem 2rem 3rem 2rem;
+  }
+
+  .guidingHeader {
+    gap: 2rem;
+  }
+
+  .guidingLogo {
+    width: 80px;
+    height: 80px;
   }
 
   .guidingTitle {
@@ -281,8 +511,16 @@
 /* Desktop Styles for Guiding */
 @media (min-width: 1024px) {
   .guidingSection {
-    padding: 5rem 3rem;
-    padding-top: 6rem;
+    padding: 2.5rem 3rem 4rem 3rem;
+  }
+
+  .guidingHeader {
+    gap: 2.5rem;
+  }
+
+  .guidingLogo {
+    width: 100px;
+    height: 100px;
   }
 
   .guidingTitle {

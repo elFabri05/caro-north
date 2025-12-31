@@ -32,6 +32,22 @@ export default function LanguageSelector() {
         className={styles.select}
         IconComponent={() => null}
         startAdornment={<LanguageIcon className={styles.icon} />}
+        MenuProps={{
+          disableScrollLock: true,
+          PaperProps: {
+            sx: {
+              maxHeight: 200,
+            }
+          },
+          anchorOrigin: {
+            vertical: 'bottom',
+            horizontal: 'right',
+          },
+          transformOrigin: {
+            vertical: 'top',
+            horizontal: 'right',
+          },
+        }}
         sx={{
           color: '#ffffff',
           '& .MuiOutlinedInput-notchedOutline': {

@@ -26,7 +26,9 @@ export function getAdventureImages(adventureSlug: string): string[] {
 export function getFirstAdventureImage(adventureSlug: string): string {
   const images = getAdventureImages(adventureSlug);
   if (images.length > 0) {
-    return `/images/adventures/${adventureSlug}/${images[0]}`;
+    // Encode the filename to handle special characters
+    const encodedFilename = encodeURIComponent(images[0]);
+    return `/images/adventures/${adventureSlug}/${encodedFilename}`;
   }
   // Fallback to default placeholder
   return '/images/adventure-placeholder.jpg';

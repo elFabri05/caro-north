@@ -51,7 +51,7 @@ export default function ImageGallery({ images, adventureSlug }: ImageGalleryProp
               onClick={() => openLightbox(index)}
             >
               <Image
-                src={`/images/adventures/${adventureSlug}/${image}`}
+                src={`/images/adventures/${adventureSlug}/${encodeURIComponent(image)}`}
                 alt={`Adventure photo ${index + 1}`}
                 fill
                 sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
@@ -95,7 +95,7 @@ export default function ImageGallery({ images, adventureSlug }: ImageGalleryProp
             onClick={(e) => e.stopPropagation()}
           >
             <Image
-              src={`/images/adventures/${adventureSlug}/${images[currentIndex]}`}
+              src={`/images/adventures/${adventureSlug}/${encodeURIComponent(images[currentIndex])}`}
               alt={`Adventure photo ${currentIndex + 1}`}
               fill
               sizes="100vw"
