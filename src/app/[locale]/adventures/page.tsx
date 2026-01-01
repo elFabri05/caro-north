@@ -6,6 +6,7 @@ import { getFirstAdventureImage } from '@/lib/getAdventureImages';
 
 // All adventures in chronological order (newest first)
 const adventureKeys = [
+  'turbio25',       // Turbio IV - 2025
   'viaSedna',       // Via Sedna - Summer 2022
   'iAmNorth',       // I am North - 2021
   'swissRoad',      // Rock'n'Road - Summer 2020
@@ -24,6 +25,7 @@ const adventureKeys = [
 
 // Slugs for URL paths
 const adventureSlugs: Record<string, string> = {
+  turbio25: 'turbio25',
   viaSedna: 'via-sedna',
   iAmNorth: 'i-am-north',
   swissRoad: 'rock-n-road',
@@ -42,6 +44,7 @@ const adventureSlugs: Record<string, string> = {
 
 // Film availability for adventures
 const adventureHasFilm: Record<string, boolean> = {
+  turbio25: false,
   viaSedna: true,
   iAmNorth: true,
   swissRoad: false,

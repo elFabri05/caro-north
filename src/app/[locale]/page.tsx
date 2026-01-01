@@ -23,31 +23,31 @@ export default async function Home({
   const adventures = [
     {
       id: 1,
+      key: 'turbio25',
+      slug: 'turbio25',
+      image: getFirstAdventureImage('turbio25'),
+      hasFilm: false,
+    },
+    {
+      id: 2,
       key: 'viaSedna',
       slug: 'via-sedna',
       image: getFirstAdventureImage('via-sedna'),
       hasFilm: true,
     },
     {
-      id: 2,
+      id: 3,
       key: 'iAmNorth',
       slug: 'i-am-north',
       image: getFirstAdventureImage('i-am-north'),
       hasFilm: true,
     },
     {
-      id: 3,
+      id: 4,
       key: 'swissRoad',
       slug: 'rock-n-road',
       image: getFirstAdventureImage('rock-n-road'),
       hasFilm: false,
-    },
-    {
-      id: 4,
-      key: 'antarticaSailing',
-      slug: 'antartica-sailing',
-      image: getFirstAdventureImage('antartica-sailing'),
-      hasFilm: true,
     },
   ];
 

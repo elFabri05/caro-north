@@ -9,6 +9,7 @@ import { getAdventureImages, getFirstAdventureImage } from '@/lib/getAdventureIm
 
 // Map slugs to adventure keys
 const slugToKey: Record<string, string> = {
+  'turbio25': 'turbio25',
   'via-sedna': 'viaSedna',
   'i-am-north': 'iAmNorth',
   'rock-n-road': 'swissRoad',
